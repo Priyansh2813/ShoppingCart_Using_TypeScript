@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "Blue T-shirt",
+    "imgURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNbzeJuI93dUu9yVbmi7ZXRFsUs6aHwQgY-A&usqp=CAU",
+    "price": 19.99
+  },
+  {
+    "id": "2",
+    "name": "Black Jeans",
+    "imgURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAc-VVoGI1y4KdEyEZrS51fsvoBmU0FgiB5g&usqp=CAU",
+    "price": 29.99
+  },
+  {
+    "id": "3",
+    "name": "Running Shoes",
+    "imgURL": "https://contents.mediadecathlon.com/p2393859/29b8b8eee38946900910e3616879676b/p2393859.jpg?format=auto&quality=70&f=650x0",
+    "price": 59.99
+  },
+  {
+    "id": "4",
+    "name": "Wireless Headphones",
+    "imgURL": "https://m.media-amazon.com/images/I/41tp0JPPlmL._AC_UF1000,1000_QL80_.jpg",
+    "price": 99.99
+  }
+]
