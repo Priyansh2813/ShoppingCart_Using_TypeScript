@@ -67,7 +67,7 @@ export default function Cart() {
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                      {data.map((item)=>{
                       return (
-                        <CartItem {...item} />
+                        <CartItem {...item} key={item.id}/>
                       )
                      })}
                     </div>

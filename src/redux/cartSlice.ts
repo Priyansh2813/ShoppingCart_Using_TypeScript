@@ -13,10 +13,10 @@ import type { RootState } from './store'
 interface CartState {
   isCartOpen:boolean;
   data:Item[];
-   
-
- 
+  
+  
 }
+
 
 
 
@@ -30,32 +30,14 @@ const initialState: CartState = {
         "name": "Blue T-shirt",
         "imgURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNbzeJuI93dUu9yVbmi7ZXRFsUs6aHwQgY-A&usqp=CAU",
         "price": 19.99,
-        "quantity":100
-      },
-      {
-        "id": "2",
-        "name": "Black Jeans",
-        "imgURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAc-VVoGI1y4KdEyEZrS51fsvoBmU0FgiB5g&usqp=CAU",
-        "price": 29.99,
         "quantity":2
       },
-      {
-        "id": "3",
-        "name": "Running Shoes",
-        "imgURL": "https://contents.mediadecathlon.com/p2393859/29b8b8eee38946900910e3616879676b/p2393859.jpg?format=auto&quality=70&f=650x0",
-        "price": 59.99,
-        "quantity":2
-      },
-      {
-        "id": "4",
-        "name": "Wireless Headphones",
-        "imgURL": "https://m.media-amazon.com/images/I/41tp0JPPlmL._AC_UF1000,1000_QL80_.jpg",
-        "price": 99.99,
-        "quantity":2
-      }
     
-  ],
-}
+  ]
+
+  }
+ 
+
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -67,7 +49,48 @@ export const cartSlice = createSlice({
       },
       closeCart:(state:CartState)=>{
         state.isCartOpen=false;
-      }
+      },
+      increaseCart:(state:CartState,action)=>{
+        if(state.data.find((item)=> item.id===action.payload.id )==null){
+          state.data.push({...action.payload,quantity:1});
+        }
+        else{
+             state.data = state.data.map((item)=> {
+              if(action.payload.id===item.id){
+                  item.quantity++;
+                  return item;
+              }
+              else{
+                 return item;
+              }
+              
+            });
+        }
+      },
+      decreaseCart:(state:CartState,action)=>{
+        if(state.data.find((item)=> item.id===action.payload.id )?.quantity===1){
+          const newItems = state.data.filter((item)=> {return item.id!==action.payload.id});
+          console.log(newItems);
+          state.data = newItems;
+        }
+        else{
+            state.data = state.data.map((item)=>{
+              if(item.id===action.payload.id){
+                item.quantity--;
+                return item;
+              }
+              else{
+                return item;
+              }
+            })
+        }
+      },
+      removeFromCart:(state:CartState,action)=>{
+        state.data =  state.data.filter((item)=>item.id!==action.payload)
+      },
+      
+    
+
     // increment: (state) => {
     //   state.value += 1
     // },
@@ -81,7 +104,7 @@ export const cartSlice = createSlice({
   },
 })
 
- export const { openCart,closeCart } = cartSlice.actions
+ export const { openCart,closeCart,increaseCart,decreaseCart,removeFromCart} = cartSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCount = (state: RootState) => state.cart

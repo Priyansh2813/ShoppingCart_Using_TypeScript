@@ -9,7 +9,7 @@ export function Store(){
     <h1 className="text-3xl mx-[50px] my-[30px]">Offers for Today!</h1>
     <div className="flex flex-wrap justify-evenly">
       {storeItems.map((item)=>{
-        return (<Card {...item}/>)
+        return (<Card {...item} key={item.id}/>)
       })}
    
    
